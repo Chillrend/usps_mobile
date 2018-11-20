@@ -19,7 +19,6 @@
             android:drawableLeft="@drawable/ic_directions_walk_black_24dp"
             android:hint="Username"
             android:layout_marginTop="170dp"
-            android:textColor="#FFF"
             android:paddingLeft="0dp"
             android:drawablePadding="5dp"
             android:textColorHint="#999"/>
@@ -33,7 +32,6 @@
             android:drawableLeft="@drawable/ic_lock_black_24dp"
             android:hint="Password"
             android:layout_marginTop="10dp"
-            android:textColor="#FFF"
             android:paddingLeft="0dp"
             android:drawablePadding="5dp"
             android:textColorHint="#999"/>
@@ -42,8 +40,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
-            android:text="SignIn"
-            android:id="@+id/button"
+            android:text="Sign In"
+            android:id="@+id/btnLogin"
             android:background="@drawable/btn_yellow"
             android:layout_gravity="center_horizontal"
             android:onClick="checkLogin"/>
