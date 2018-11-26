@@ -33,9 +33,13 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="outputName" value="ic_search_black_24dp" />
+                            <entry key="assetSourceType" value="FILE" />
+                            <entry key="color" value="e71921" />
+                            <entry key="height" value="28" />
+                            <entry key="outputName" value="ic_www" />
                             <entry key="overrideSize" value="true" />
-                            <entry key="sourceFile" value="D:\Farhan\ISAS OR PROJECT DOC\brieftrager\raw vector\logo-sb.svg" />
+                            <entry key="sourceFile" value="D:\Farhan\ISAS OR PROJECT DOC\brieftrager\raw vector\www.svg" />
+                            <entry key="width" value="28" />
                           </map>
                         </option>
                       </PersistentState>

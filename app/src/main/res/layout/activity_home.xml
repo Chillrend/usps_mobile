@@ -28,48 +28,262 @@
                     android:src="@drawable/ic_logo_usps">
             </ImageView>
         </android.support.v7.widget.Toolbar>
-        <LinearLayout
+        <ScrollView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginTop="?attr/actionBarSize">
-            <com.daimajia.slider.library.SliderLayout
-                    android:id="@+id/slider"
-                    android:layout_width="wrap_content"
-                    android:layout_height="200dp"/>
+                android:layout_height="match_parent"
+                android:scrollbars="none">
             <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center">
-                <Button
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:background="@drawable/circle"
-                        android:drawableTop="@android:drawable/ic_menu_search"
-                        android:paddingTop="20dp"
-                        android:text="Search Zip"
-                        android:textColor="#000" />
-                <Button
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
+                    android:layout_marginTop="?attr/actionBarSize"
+                    android:orientation="vertical">
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
-                        android:background="@drawable/circle"
-                        android:drawableTop="@android:drawable/ic_menu_search"
-                        android:paddingTop="20dp"
-                        android:text="Search Zip"
-                        android:textColor="#000" />
-                <Button
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:layout_marginLeft="10dp"
-                        android:drawableTop="@android:drawable/ic_menu_search"
-                        android:paddingTop="20dp"
-                        android:text="Search Zip"
-                        android:textColor="#000" />
+                        android:layout_marginRight="10dp"
+                        android:orientation="vertical">
+                    <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp"
+                            android:layout_marginLeft="5dp"
+                            android:text="Welcome !"
+                            android:textSize="22sp"/>
+                    <TextView
+                            android:id="@+id/viewUsername"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginLeft="5dp"
+                            android:fontFamily="@font/robotobold"
+                            android:text="Mr. Aleph-0"
+                            android:textSize="26sp"/>
+                </LinearLayout>
+
+                <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="25dp"
+                        android:layout_marginLeft="15dp"
+                        android:text="Services"
+                        android:textSize="16sp"/>
+                <!--1 row of button start-->
+                <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginRight="15dp"
+                        android:layout_marginLeft="15dp">
+
+                    <!--button start-->
+                    <LinearLayout
+                            android:layout_width="0px"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:background="@drawable/btnhomeshape">
+                        <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:padding="10dp"
+                                android:gravity="center_vertical"
+                                android:orientation="horizontal">
+                            <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical"
+                                    android:padding="5dp"
+                                    android:layout_gravity="left">
+                                <ImageView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:src="@drawable/ic_loupe"
+                                        android:gravity="center_vertical"
+                                        />
+                            </LinearLayout>
+                            <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:padding="5dp"
+                                    android:layout_gravity="right"
+                                    android:gravity="center_vertical"
+                                    android:orientation="vertical">
+                                <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="PACKAGE TRACKING"
+                                        android:textSize="14sp"
+                                        android:textColor="#fff"/>
+                            </LinearLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+                    <!--button end-->
+                    <!--button start-->
+                    <LinearLayout
+                            android:layout_width="0px"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:orientation="horizontal"
+                            android:background="@drawable/btnhomeshape">
+                        <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:padding="10dp"
+                                android:gravity="center_vertical"
+                                android:orientation="horizontal">
+                            <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical"
+                                    android:padding="5dp"
+                                    android:layout_gravity="left">
+                                <ImageView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:src="@drawable/ic_zip"
+                                        android:gravity="center_vertical"
+                                        />
+                            </LinearLayout>
+                            <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:padding="5dp"
+                                    android:layout_gravity="right"
+                                    android:gravity="center_vertical"
+                                    android:orientation="vertical">
+                                <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="ZIPCODE LOOKUP"
+                                        android:textSize="14sp"
+                                        android:textColor="#fff"/>
+                            </LinearLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+                    <!--button end-->
+                </LinearLayout>
+                <!--1 row of button end-->
+                <!--1 row of button start-->
+                <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp">
+                    <!--button start-->
+                    <LinearLayout
+                            android:layout_width="0px"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:background="@drawable/btnhomeshape">
+                        <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:padding="10dp"
+                                android:gravity="center_vertical"
+                                android:orientation="horizontal">
+                            <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical"
+                                    android:padding="5dp"
+                                    android:layout_gravity="left">
+                                <ImageView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:src="@drawable/ic_stopwatch"
+                                        android:gravity="center_vertical"
+                                        />
+                            </LinearLayout>
+                            <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:padding="5dp"
+                                    android:layout_gravity="right"
+                                    android:gravity="center_vertical"
+                                    android:orientation="vertical">
+                                <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="SCHEDULED PICKUP"
+                                        android:textSize="14sp"
+                                        android:textColor="#fff"/>
+                            </LinearLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+                    <!--button end-->
+                    <!--button start-->
+                    <LinearLayout
+                            android:layout_width="0px"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:orientation="horizontal"
+                            android:background="@drawable/btnhomeshape">
+                        <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:padding="10dp"
+                                android:gravity="center_vertical"
+                                android:orientation="horizontal">
+                            <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical"
+                                    android:padding="5dp"
+                                    android:layout_gravity="left">
+                                <ImageView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:src="@drawable/ic_www"
+                                        android:gravity="center_vertical"
+                                        />
+                            </LinearLayout>
+                            <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:padding="5dp"
+                                    android:layout_gravity="right"
+                                    android:gravity="center_vertical"
+                                    android:orientation="vertical">
+                                <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="USPS WEBSITE"
+                                        android:textSize="14sp"
+                                        android:textColor="#fff"/>
+                            </LinearLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+                    <!--button end-->
+                </LinearLayout>
+                <!--1 row of button end-->
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginTop="10dp"
+                        >
+                    <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="USPS Postal Notifications"
+                            android:layout_marginLeft="15dp"/>
+                    <com.daimajia.slider.library.SliderLayout
+                            android:id="@+id/slider"
+                            android:layout_width="match_parent"
+                            android:layout_height="180dp"
+                            />
+                </LinearLayout>
 
             </LinearLayout>
-        </LinearLayout>
+
+        </ScrollView>
+
     </FrameLayout>
     <!--<FrameLayout-->
             <!--android:layout_width="match_parent"-->

@@ -1,0 +1,70 @@
+<com.daimajia.slider.library.SliderLayout
+                    android:id="@+id/slider"
+                    android:layout_width="wrap_content"
+                    android:layout_height="200dp"
+                    app:indicator_visibility="visible">
+            </com.daimajia.slider.library.SliderLayout>
+
+            mSlider = (SliderLayout) findViewById(R.id.slider);
+
+                    HashMap<String,String> urlMaps = new HashMap<String, String>();
+                    urlMaps.put("demo","http://192.168.43.14/brieftrager/header.jpg");
+                    urlMaps.put("demo","http://192.168.43.14/brieftrager/header.jpg");
+                    urlMaps.put("demo","http://192.168.43.14/brieftrager/header.jpg");
+                    urlMaps.put("demo","http://192.168.43.14/brieftrager/header.jpg");
+
+                    for(String name : urlMaps.keySet()){
+                        TextSliderView textSliderView = new TextSliderView(this);
+
+                        textSliderView.description(name).image(urlMaps.get(name)).setScaleType(BaseSliderView.ScaleType.Fit);
+                        textSliderView.bundle(new Bundle());
+                        textSliderView.getBundle().putString("extra",name);
+
+                        mSlider.addSlider(textSliderView);
+                        mSlider.setPresetIndicator(SliderLayout.PresetIndicators.Right_Bottom);
+                    }
+
+
+                      @Override
+                        protected void onStop(){
+                            mSlider.stopAutoCycle();
+                            super.onStop();
+                        }
+
+
+
+                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:orientation="horizontal"
+                                            android:layout_marginLeft="10dp"
+                                            android:layout_marginRight="10dp"
+                                            android:gravity="center">
+                                        <!--<Button-->
+                                                <!--android:layout_width="100dp"-->
+                                                <!--android:layout_height="100dp"-->
+                                                <!--android:background="@null"-->
+                                                <!--android:drawableTop="@drawable/ic_truck"-->
+                                                <!--android:paddingTop="20dp"-->
+                                                <!--android:text="Track Package"-->
+                                                <!--android:textColor="#000" />-->
+                                        <!--<Button-->
+                                                <!--android:layout_width="100dp"-->
+                                                <!--android:layout_height="100dp"-->
+                                                <!--android:layout_marginLeft="10dp"-->
+                                                <!--android:background="@null"-->
+                                                <!--android:drawableTop="@drawable/ic_calendar"-->
+                                                <!--android:paddingTop="20dp"-->
+                                                <!--android:text="Schedule a Pickup"-->
+                                                <!--android:textColor="#000" />-->
+                                        <!--<Button-->
+                                                <!--android:layout_width="100dp"-->
+                                                <!--android:layout_height="100dp"-->
+                                                <!--android:layout_marginLeft="10dp"-->
+                                                <!--android:drawableTop="@drawable/ic_search_black"-->
+                                                <!--android:paddingTop="20dp"-->
+                                                <!--android:text="Search Zip"-->
+                                                <!--android:background="@null"-->
+                                                <!--android:textColor="#000"/>-->
+
+                                    </LinearLayout>

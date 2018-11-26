@@ -16,6 +16,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.TextView;
 import com.daimajia.slider.library.Animations.DescriptionAnimation;
+import com.daimajia.slider.library.Indicators.PagerIndicator;
 import com.daimajia.slider.library.SliderLayout;
 import com.daimajia.slider.library.SliderTypes.BaseSliderView;
 import com.daimajia.slider.library.SliderTypes.TextSliderView;
@@ -42,27 +43,8 @@ public class home extends AppCompatActivity {
         actionBar.setDisplayShowTitleEnabled(false);
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setHomeAsUpIndicator(R.drawable.ic_menu);
-        mDrawerLayout = findViewById(R.id.drawer_layout);
 
-//        int titleId = getResources().getIdentifier("action_bar_title", "id", "android");
-//        TextView abTitle = (TextView) findViewById(titleId);
-//
-//        DisplayMetrics displayMetrics = new DisplayMetrics();
-//        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
-//
-//        abTitle.setGravity(Gravity.CENTER_HORIZONTAL);
-//        abTitle.setWidth(displayMetrics.widthPixels);
-//        getActionBar().setTitle("i'm center now");
 
-        NavigationView navigationView = findViewById(R.id.navbar);
-        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                menuItem.setChecked(true);
-                mDrawerLayout.closeDrawers();
-                return true;
-            }
-        });
 
         mSlider = (SliderLayout) findViewById(R.id.slider);
 
@@ -80,14 +62,39 @@ public class home extends AppCompatActivity {
             textSliderView.getBundle().putString("extra",name);
 
             mSlider.addSlider(textSliderView);
+            mSlider.setPresetIndicator(SliderLayout.PresetIndicators.Right_Bottom);
         }
 
+//        int titleId = getResources().getIdentifier("action_bar_title", "id", "android");
+//        TextView abTitle = (TextView) findViewById(titleId);
+//
+//        DisplayMetrics displayMetrics = new DisplayMetrics();
+//        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+//
+//        abTitle.setGravity(Gravity.CENTER_HORIZONTAL);
+//        abTitle.setWidth(displayMetrics.widthPixels);
+//        getActionBar().setTitle("i'm center now");
+
+
+        NavigationView navigationView = findViewById(R.id.navbar);
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                menuItem.setChecked(true);
+                mDrawerLayout.closeDrawers();
+                return true;
+            }
+        });
+
+        mDrawerLayout = findViewById(R.id.drawer_layout);
     }
+
     @Override
     protected void onStop(){
         mSlider.stopAutoCycle();
         super.onStop();
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item){
         switch(item.getItemId()){
