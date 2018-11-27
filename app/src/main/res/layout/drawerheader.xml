@@ -12,6 +12,7 @@
             android:background="@drawable/header" />
 
     <ImageView
+            android:id="@+id/drawerUserpp"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="@dimen/nav_header_vertical_spacing"
             android:layout_width="64dp"
@@ -30,6 +31,7 @@
             android:paddingRight="16dp">
 
         <TextView
+                android:id="@+id/drawerUname"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -38,6 +40,7 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
 
         <TextView
+                android:id="@+id/drawerUemail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"

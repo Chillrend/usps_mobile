@@ -1,5 +1,8 @@
 package org.chillrend.brieftrager;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -10,26 +13,31 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.transition.Slide;
 import android.util.DisplayMetrics;
-import android.view.Gravity;
-import android.view.MenuItem;
-import android.view.Window;
-import android.view.WindowManager;
+import android.view.*;
 import android.widget.TextView;
 import com.daimajia.slider.library.Animations.DescriptionAnimation;
 import com.daimajia.slider.library.Indicators.PagerIndicator;
 import com.daimajia.slider.library.SliderLayout;
 import com.daimajia.slider.library.SliderTypes.BaseSliderView;
 import com.daimajia.slider.library.SliderTypes.TextSliderView;
+import com.squareup.picasso.Picasso;
 
 import java.util.HashMap;
 
-public class home extends AppCompatActivity {
+public class home extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+    private String drawerUname, drawerEmail, homeName;
+    private TextView emailView, unameView, nameView;
     private DrawerLayout mDrawerLayout;
     private SliderLayout mSlider;
+    Context ctx;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences(getString(R.string.preference_file), Context.MODE_PRIVATE);
+
+
 
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
@@ -49,10 +57,10 @@ public class home extends AppCompatActivity {
         mSlider = (SliderLayout) findViewById(R.id.slider);
 
         HashMap<String,String> urlMaps = new HashMap<String, String>();
-        urlMaps.put("demo","http://192.168.43.14/brieftrager/header.jpg");
-        urlMaps.put("demo","http://192.168.43.14/brieftrager/header.jpg");
-        urlMaps.put("demo","http://192.168.43.14/brieftrager/header.jpg");
-        urlMaps.put("demo","http://192.168.43.14/brieftrager/header.jpg");
+        urlMaps.put("Boxes Fee in USPS","http://192.168.43.14/brieftrager/boxes.png");
+        urlMaps.put("Florence Hurricane Announcement","http://192.168.43.14/brieftrager/florence.jpg");
+        urlMaps.put("Rates UP in 2019","http://192.168.43.14/brieftrager/ratesup.jpg");
+        urlMaps.put("Services Continue Despite of Wildfire","http://192.168.43.14/brieftrager/reachesyou.jpg");
 
         for(String name : urlMaps.keySet()){
             TextSliderView textSliderView = new TextSliderView(this);
@@ -75,18 +83,58 @@ public class home extends AppCompatActivity {
 //        abTitle.setWidth(displayMetrics.widthPixels);
 //        getActionBar().setTitle("i'm center now");
 
-
-        NavigationView navigationView = findViewById(R.id.navbar);
-        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                menuItem.setChecked(true);
-                mDrawerLayout.closeDrawers();
-                return true;
-            }
-        });
+        setNavigationViewListener();
 
         mDrawerLayout = findViewById(R.id.drawer_layout);
+
+        nameView = (TextView) findViewById(R.id.viewUsername);
+
+        NavigationView navigationView = (NavigationView) findViewById(R.id.navbar);
+        View vi = navigationView.getHeaderView(0);
+
+        emailView = (TextView) vi.findViewById(R.id.drawerUemail);
+        unameView = (TextView) vi.findViewById(R.id.drawerUname);
+
+        if(!sharedPreferences.contains("username")){
+            Intent intent = new Intent(this, login.class);
+            startActivity(intent);
+        }else{
+            drawerUname = sharedPreferences.getString("username","No User");
+            drawerEmail = sharedPreferences.getString("email","No User");
+            homeName = sharedPreferences.getString("name","No User");
+
+            nameView.setText(homeName);
+            emailView.setText(drawerEmail);
+            unameView.setText(drawerUname);
+        }
+
+    }
+
+    private void setNavigationViewListener() {
+        NavigationView navigationView = (NavigationView) findViewById(R.id.navbar);
+        navigationView.setNavigationItemSelectedListener(this);
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        // Handle navigation view item clicks here.
+        switch (item.getItemId()) {
+
+            case R.id.nav_power: {
+                SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences(getString(R.string.preference_file),
+                        Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.clear();
+                editor.apply();
+                Intent intention = new Intent(home.this, login.class);
+                startActivity(intention);
+                //do somthing
+                break;
+            }
+        }
+        //close navigation drawer
+        mDrawerLayout.closeDrawer(GravityCompat.START);
+        return true;
     }
 
     @Override
