@@ -1,10 +1,12 @@
 package org.chillrend.brieftrager;
 
 import android.content.Context;
+import android.content.ContextWrapper;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -25,16 +27,17 @@ import com.daimajia.slider.library.SliderTypes.BaseSliderView;
 import com.daimajia.slider.library.SliderTypes.TextSliderView;
 import com.squareup.picasso.Picasso;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
+import java.io.*;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.HashMap;
 
 public class home extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
-    private String drawerUname, drawerEmail, homeName;
+    private String drawerUname, drawerEmail, homeName, uerel, file, pathz;
     private TextView emailView, unameView, nameView;
     private DrawerLayout mDrawerLayout;
     private SliderLayout mSlider;
+    private Bitmap userpp;
     Context ctx;
 
     @Override
@@ -101,6 +104,11 @@ public class home extends AppCompatActivity implements NavigationView.OnNavigati
         emailView = (TextView) vi.findViewById(R.id.drawerUemail);
         unameView = (TextView) vi.findViewById(R.id.drawerUname);
 
+        uerel = sharedPreferences.getString("userpicture", "http://192.168.43.14/post_pp/def.png");
+
+        GetBitmapFromURLAsync getBitmapFromURLAsync = new GetBitmapFromURLAsync();
+        getBitmapFromURLAsync.execute(uerel);
+
         if(!sharedPreferences.contains("username")){
             Intent intent = new Intent(this, login.class);
             startActivity(intent);
@@ -108,20 +116,10 @@ public class home extends AppCompatActivity implements NavigationView.OnNavigati
             drawerUname = sharedPreferences.getString("username","No User");
             drawerEmail = sharedPreferences.getString("email","No User");
             homeName = sharedPreferences.getString("name","No User");
-
-            if(sharedPreferences.contains("path") && sharedPreferences.contains("filename")){
-                String path, filename;
-                path = sharedPreferences.getString("path", null);
-                filename = sharedPreferences.getString("filename", null);
-
-                loadImageFromStorageToView(path, filename);
-            }
-
             nameView.setText(homeName);
             emailView.setText(drawerEmail);
             unameView.setText(drawerUname);
         }
-
     }
 
     private void loadImageFromStorageToView(String path, String filename)
@@ -186,4 +184,74 @@ public class home extends AppCompatActivity implements NavigationView.OnNavigati
         }
         return super.onOptionsItemSelected(item);
     }
+
+    private class GetBitmapFromURLAsync extends AsyncTask<String, Void, Bitmap> {
+        @Override
+        protected Bitmap doInBackground(String... params){
+            return getBitmapFromURL(params[0]);
+        }
+
+        protected Bitmap getBitmapFromURL(String src){
+            try{
+                URL url = new URL(src);
+                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                connection.setDoInput(true);
+                connection.connect();
+                InputStream is = connection.getInputStream();
+                Bitmap myBitmap = BitmapFactory.decodeStream(is);
+                return myBitmap;
+            }catch(IOException io){
+                io.printStackTrace();
+                return null;
+            }
+        }
+
+        @Override
+        protected void onPostExecute(Bitmap image){
+            userpp = image;
+
+            SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences(getString(R.string.preference_file), Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+
+            String path = saveToInternalStorage(image);
+
+            editor.putString("filename", uerel.substring(uerel.lastIndexOf("/") + 1));
+            editor.putString("path", path);
+
+            file = uerel.substring(uerel.lastIndexOf("/") + 1);
+            pathz = path;
+
+            editor.commit();
+
+            loadImageFromStorageToView(path, file);
+
+        }
+
+    }
+
+    private String saveToInternalStorage(Bitmap image){
+        ContextWrapper cw = new ContextWrapper(getApplicationContext());
+
+        File directory = cw.getDir("imageDir", Context.MODE_PRIVATE);
+
+        String fileName = uerel.substring(uerel.lastIndexOf("/") + 1);
+
+        File myPath = new File(directory, fileName);
+
+        FileOutputStream fos = null;
+        try{
+            fos = new FileOutputStream(myPath);
+            image.compress(Bitmap.CompressFormat.PNG, 100, fos);
+        }catch(Exception e){
+            e.printStackTrace();
+        }finally {
+            try{
+                fos.close();
+            }catch (IOException io){
+                io.printStackTrace();
+            }
+        }
+        return directory.getAbsolutePath();
+    }
+
 }

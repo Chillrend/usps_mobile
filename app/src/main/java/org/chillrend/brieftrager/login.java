@@ -123,20 +123,6 @@ public class login extends AppCompatActivity {
                     editor.putString("userpicture", sessionImageUrl);
                     editor.commit();
 
-                    if(sharedPreferences.contains("userpictures")){
-                        String uerel = sharedPreferences.getString("userpp", "http://192.168.43.14/post_pp/def.png");
-
-                        GetBitmapFromURLAsync getBitmapFromURLAsync = new GetBitmapFromURLAsync();
-                        getBitmapFromURLAsync.execute(uerel);
-
-                        String path = saveToInternalStorage(userpp);
-
-                        editor.putString("filename", sessionImageUrl.substring(sessionImageUrl.lastIndexOf("/") + 1));
-                        editor.putString("path", path);
-
-                        editor.apply();
-                    }
-
                     Intent intent = new Intent(login.this,home.class);
                     startActivity(intent);
                 }else{
@@ -153,58 +139,5 @@ public class login extends AppCompatActivity {
             pDialog.dismiss();
         }
 
-    }
-
-    private class GetBitmapFromURLAsync extends AsyncTask<String, Void, Bitmap>{
-        @Override
-        protected Bitmap doInBackground(String... params){
-            return getBitmapFromURL(params[0]);
-        }
-
-        protected Bitmap getBitmapFromURL(String src){
-            try{
-                URL url = new URL(src);
-                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-                connection.setDoInput(true);
-                connection.connect();
-                InputStream is = connection.getInputStream();
-                Bitmap myBitmap = BitmapFactory.decodeStream(is);
-                return myBitmap;
-            }catch(IOException io){
-                io.printStackTrace();
-                return null;
-            }
-        }
-
-        @Override
-        protected void onPostExecute(Bitmap image){
-            userpp = image;
-        }
-
-    }
-
-    private String saveToInternalStorage(Bitmap image){
-        ContextWrapper cw = new ContextWrapper(getApplicationContext());
-
-        File directory = cw.getDir("imageDir", Context.MODE_PRIVATE);
-
-        String fileName = sessionImageUrl.substring(sessionImageUrl.lastIndexOf("/") + 1);
-
-        File myPath = new File(directory, fileName);
-
-        FileOutputStream fos = null;
-        try{
-            fos = new FileOutputStream(myPath);
-            image.compress(Bitmap.CompressFormat.PNG, 100, fos);
-        }catch(Exception e){
-            e.printStackTrace();
-        }finally {
-            try{
-                fos.close();
-            }catch (IOException io){
-                io.printStackTrace();
-            }
-        }
-        return directory.getAbsolutePath();
     }
 }
