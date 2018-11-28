@@ -3,6 +3,8 @@ package org.chillrend.brieftrager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -14,6 +16,7 @@ import android.support.v7.widget.Toolbar;
 import android.transition.Slide;
 import android.util.DisplayMetrics;
 import android.view.*;
+import android.widget.ImageView;
 import android.widget.TextView;
 import com.daimajia.slider.library.Animations.DescriptionAnimation;
 import com.daimajia.slider.library.Indicators.PagerIndicator;
@@ -22,6 +25,9 @@ import com.daimajia.slider.library.SliderTypes.BaseSliderView;
 import com.daimajia.slider.library.SliderTypes.TextSliderView;
 import com.squareup.picasso.Picasso;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.util.HashMap;
 
 public class home extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -103,9 +109,37 @@ public class home extends AppCompatActivity implements NavigationView.OnNavigati
             drawerEmail = sharedPreferences.getString("email","No User");
             homeName = sharedPreferences.getString("name","No User");
 
+            if(sharedPreferences.contains("path") && sharedPreferences.contains("filename")){
+                String path, filename;
+                path = sharedPreferences.getString("path", null);
+                filename = sharedPreferences.getString("filename", null);
+
+                loadImageFromStorageToView(path, filename);
+            }
+
             nameView.setText(homeName);
             emailView.setText(drawerEmail);
             unameView.setText(drawerUname);
+        }
+
+    }
+
+    private void loadImageFromStorageToView(String path, String filename)
+    {
+
+        try {
+            File f=new File(path, filename);
+            Bitmap b = BitmapFactory.decodeStream(new FileInputStream(f));
+
+            NavigationView navigationView = (NavigationView) findViewById(R.id.navbar);
+            View vi = navigationView.getHeaderView(0);
+
+            ImageView img=(ImageView) vi.findViewById(R.id.drawerUserpp);
+            img.setImageBitmap(b);
+        }
+        catch (FileNotFoundException e)
+        {
+            e.printStackTrace();
         }
 
     }

@@ -2,6 +2,7 @@ package org.chillrend.brieftrager;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.ContextWrapper;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
@@ -23,6 +24,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.chillrend.brieftrager.sapot.JSONParser;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
@@ -61,11 +64,8 @@ public class login extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 new VerifyUser().execute();
-                SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences(getString(R.string.preference_file),
-                        Context.MODE_PRIVATE);
-                if(sharedPreferences.contains("userpp")){
-//                    String
-                }
+
+
             }
         });
     }
@@ -120,8 +120,22 @@ public class login extends AppCompatActivity {
                     editor.putString("username", sessionUsername);
                     editor.putString("name", sessionName);
                     editor.putString("email", sessionEmail);
-                    editor.putString("userpp", sessionImageUrl);
-                    editor.apply();
+                    editor.putString("userpicture", sessionImageUrl);
+                    editor.commit();
+
+                    if(sharedPreferences.contains("userpictures")){
+                        String uerel = sharedPreferences.getString("userpp", "http://192.168.43.14/post_pp/def.png");
+
+                        GetBitmapFromURLAsync getBitmapFromURLAsync = new GetBitmapFromURLAsync();
+                        getBitmapFromURLAsync.execute(uerel);
+
+                        String path = saveToInternalStorage(userpp);
+
+                        editor.putString("filename", sessionImageUrl.substring(sessionImageUrl.lastIndexOf("/") + 1));
+                        editor.putString("path", path);
+
+                        editor.apply();
+                    }
 
                     Intent intent = new Intent(login.this,home.class);
                     startActivity(intent);
@@ -167,5 +181,30 @@ public class login extends AppCompatActivity {
             userpp = image;
         }
 
+    }
+
+    private String saveToInternalStorage(Bitmap image){
+        ContextWrapper cw = new ContextWrapper(getApplicationContext());
+
+        File directory = cw.getDir("imageDir", Context.MODE_PRIVATE);
+
+        String fileName = sessionImageUrl.substring(sessionImageUrl.lastIndexOf("/") + 1);
+
+        File myPath = new File(directory, fileName);
+
+        FileOutputStream fos = null;
+        try{
+            fos = new FileOutputStream(myPath);
+            image.compress(Bitmap.CompressFormat.PNG, 100, fos);
+        }catch(Exception e){
+            e.printStackTrace();
+        }finally {
+            try{
+                fos.close();
+            }catch (IOException io){
+                io.printStackTrace();
+            }
+        }
+        return directory.getAbsolutePath();
     }
 }
