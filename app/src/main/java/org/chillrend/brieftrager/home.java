@@ -26,6 +26,7 @@ import com.daimajia.slider.library.SliderLayout;
 import com.daimajia.slider.library.SliderTypes.BaseSliderView;
 import com.daimajia.slider.library.SliderTypes.TextSliderView;
 import com.squareup.picasso.Picasso;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 import java.io.*;
 import java.net.HttpURLConnection;
@@ -132,7 +133,7 @@ public class home extends AppCompatActivity implements NavigationView.OnNavigati
             NavigationView navigationView = (NavigationView) findViewById(R.id.navbar);
             View vi = navigationView.getHeaderView(0);
 
-            ImageView img=(ImageView) vi.findViewById(R.id.drawerUserpp);
+            CircleImageView img=(CircleImageView) vi.findViewById(R.id.drawerUserpp);
             img.setImageBitmap(b);
         }
         catch (FileNotFoundException e)

@@ -39,6 +39,7 @@ public class login extends AppCompatActivity {
     private String username, password, sessionUsername, sessionName, sessionEmail, sessionPhone, sessionAddr,
             sessionImageUrl, sessionZip, sessionGender;
     private String getUrl = "http://192.168.43.14/brieftrager/rest/api/login.php";
+
     private ProgressDialog pDialog;
     private EditText userbox, pwdbox;
     private TextView errorText;
@@ -120,6 +121,9 @@ public class login extends AppCompatActivity {
                     editor.putString("username", sessionUsername);
                     editor.putString("name", sessionName);
                     editor.putString("email", sessionEmail);
+                    editor.putString("zip", sessionZip);
+                    editor.putString("address", sessionAddr);
+                    editor.putString("phone", sessionPhone);
                     editor.putString("userpicture", sessionImageUrl);
                     editor.commit();
 
