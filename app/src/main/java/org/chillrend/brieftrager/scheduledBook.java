@@ -26,6 +26,7 @@ public class scheduledBook extends AppCompatActivity {
 
     List<KeyValPair> ShipmentMethod = new ArrayList<KeyValPair>();
     JSONParser jsonParser = new JSONParser();
+    JSONParser jsonParsers = new JSONParser();
     Calendar myCalendar = Calendar.getInstance();
     EditText detPicker,recipientName, recipientAddress, recipientZip, recipientTel, packWeight;
     String awb, from_zip, to_zip, sender_name, recipient_name, sender_telp, recipient_telp, from_address,
@@ -65,6 +66,7 @@ public class scheduledBook extends AppCompatActivity {
         recipientAddress = (EditText) findViewById(R.id.recipientAddressBox);
         recipientTel = (EditText) findViewById(R.id.recipientTelBox);
         recipientZip = (EditText) findViewById(R.id.recipientZipBox);
+        packWeight = (EditText) findViewById(R.id.weightBox);
         method = (Spinner) findViewById(R.id.shipmentMethod);
         sambidBtn = (Button) findViewById(R.id.btnSambid);
 
@@ -98,6 +100,8 @@ public class scheduledBook extends AppCompatActivity {
                 weight = packWeight.getText().toString();
                 expected_date = detPicker.getText().toString();
                 awb = UUID.randomUUID().toString();
+
+                new submitScheduled().execute();
             }
         });
 
@@ -131,12 +135,10 @@ public class scheduledBook extends AppCompatActivity {
             param.add(new BasicNameValuePair("awb", awb));
             param.add(new BasicNameValuePair("shipment_type", shipment_type));
 
-            JSONObject json = jsonParser.makeHttpRequest(submitUrl, "POST", param);
-
-
+            JSONObject jsons = jsonParsers.makeHttpRequest(submitUrl, "POST", param);
 
             try{
-                shipmentArray = json.getJSONArray("shipmentData");
+                shipmentArray = jsons.getJSONArray("shipmentData");
 
                 for(int iter=0; iter<shipmentArray.length(); iter++){
                     JSONObject c = shipmentArray.getJSONObject(iter);
@@ -175,6 +177,7 @@ public class scheduledBook extends AppCompatActivity {
             intent.putExtra("toState", toState);
             intent.putExtra("toStateAbbr", toStateAbbr);
             intent.putExtra("toCounty", toCounty);
+            intent.putExtra("shipmentTypeName", shipment_type_name);
 
             startActivity(intent);
             return null;

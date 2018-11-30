@@ -1,10 +1,113 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.LinearLayout
+<LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:orientation="vertical"
         tools:context=".showScheduledResult">
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorPrimary"
+            android:gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginBottom="5dp"
+            android:text="Shipment Created"
+            android:textSize="18dp"
+            android:fontFamily="@font/robotomediumitalic"/>
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorPrimary"
+            android:gravity="center_horizontal"
+            android:layout_marginLeft="5dp"
+            android:layout_marginBottom="5dp"
+            android:text="Screenshot this screen to save pickup details"
+            android:textSize="14dp"
+            android:fontFamily="@font/robotomediumitalic"/>
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorPrimary"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginBottom="5dp"
+            android:text="Sender Details"
+            android:textSize="14dp"
+            android:fontFamily="@font/robotomedium"/>
+    <TextView
+            android:id="@+id/senderNameView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Mr. John Doe"/>
+    <TextView
+            android:id="@+id/senderAddressView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="50 Oakland Ave"/>
+    <TextView
+            android:id="@+id/senderCityStateZipView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Florida, Florida FL, 32104"/>
+    <TextView
+            android:id="@+id/americaaa"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="U.S.A"/>
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorPrimary"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginBottom="5dp"
+            android:text="Sender Details"
+            android:textSize="14dp"
+            android:fontFamily="@font/robotomedium"/>
+    <TextView
+            android:id="@+id/recipientNameView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Mr. John Doe"/>
+    <TextView
+            android:id="@+id/recipientAddressView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="50 Oakland Ave"/>
+    <TextView
+            android:id="@+id/recipientCityStateZipView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Florida, Florida FL, 32104"/>
+    <TextView
+            android:id="@+id/americaaas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="U.S.A"/>
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+        <TextView
+                android:id="@+id/awbView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:fontFamily="@font/consolas"
+                android:text="airwaybill : 07a96664-f7ea-4237-8d2e-3e11974aeea0"/>
+        <ImageView
+                android:id="@+id/qrView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:src="@drawable/ic_qr_code"/>
+    </LinearLayout>
 
-</android.support.constraint.LinearLayout>
+</LinearLayout>
