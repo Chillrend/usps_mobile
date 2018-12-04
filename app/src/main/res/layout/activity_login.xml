@@ -16,7 +16,7 @@
             android:inputType="text"
             android:ems="10"
             android:id="@+id/userbox"
-            android:drawableLeft="@drawable/ic_directions_walk_black_24dp"
+            android:drawableLeft="@drawable/ic_person_black_24dp"
             android:hint="Username"
             android:layout_marginTop="170dp"
             android:paddingLeft="0dp"

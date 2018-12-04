@@ -161,7 +161,12 @@ public class home extends AppCompatActivity implements NavigationView.OnNavigati
                 editor.apply();
                 Intent intention = new Intent(home.this, login.class);
                 startActivity(intention);
-                //do somthing
+
+                break;
+            }
+            case R.id.nav_info:{
+                Intent intentatur =  new Intent(home.this, about.class);
+                startActivity(intentatur);
                 break;
             }
         }
