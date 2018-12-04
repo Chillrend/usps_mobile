@@ -32,24 +32,27 @@ public class PackageTracking extends AppCompatActivity {
     private String awb;
     JSONParser jsonParser = new JSONParser();
     JSONArray shipmentArray = null;
-    String URL = "http://192.168.1.7:1945/brieftrager/rest/api/search_shipment.php";
+    String URL = "http://192.168.43.14/brieftrager/rest/api/search_shipment.php";
     String retAwb, sender, recipient, senderTelp, recipientTelp, fromAddress, toAddress,
             fromCity, fromState, fromAbbr, toCity, toState, toAbbr, nowCity, nowState, nowAbbr, status;
     int nowZip, weight, toZip, fromZip;
+    TextView mesaje,trackingAwb,trackingSenderNameView,trackingSenderCityStateZipView, trackingSenderAddressView,trackingAmericaText,
+            trackingRecipientNameView,trackingRecipientAddressView,trackingRecipientCityStateZipView,
+            trackingAmericaaas,shipmentAt, recipientDetails, senderDetails;
 
     EditText zipSearch;
     TextView cityView, countyView, stateView, zipView;
     ImageButton btnSearch;
-    Button btnDeatail;
+    ImageButton btnDeatail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_package_tracking);
 
-        tvResult = findViewById(R.id.tvResult);
+        zipSearch = findViewById(R.id.zippySearch);
 
-        Button btnScan = findViewById(R.id.btnScan);
+        ImageButton btnScan = findViewById(R.id.btnScan);
         btnScan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -57,9 +60,25 @@ public class PackageTracking extends AppCompatActivity {
                 startActivity(i);
             }
         });
-        tvResult.setText(Scanner.txtResult);
 
-        btnDeatail = findViewById(R.id.btndeatil);
+        zipSearch.setText(Scanner.txtResult);
+
+        mesaje = findViewById(R.id.mesaje);
+        trackingAwb = findViewById(R.id.trackingAwb);
+        trackingSenderNameView = findViewById(R.id.trackingSenderNameView);
+        trackingSenderCityStateZipView = findViewById(R.id.trackingSenderCityStateZipView);
+        trackingAmericaText = findViewById(R.id.trackingAmericaText);
+        trackingRecipientNameView = findViewById(R.id.trackingRecipientNameView);
+        trackingRecipientCityStateZipView = findViewById(R.id.trackingRecipientCityStateZipView);
+        trackingAmericaaas = findViewById(R.id.trackingAmericaaas);
+        shipmentAt = findViewById(R.id.shipmentAt);
+        trackingRecipientAddressView = findViewById(R.id.trackingRecipientAddressView);
+        trackingSenderAddressView = findViewById(R.id.trackingSenderAddressView);
+        recipientDetails = findViewById(R.id.recipientDetails);
+        senderDetails = findViewById(R.id.senderDetails);
+
+
+        btnDeatail = findViewById(R.id.btnZippySearch);
 
         btnDeatail.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,7 +95,7 @@ public class PackageTracking extends AppCompatActivity {
         }
 
         protected String doInBackground(String... params){
-            awb = tvResult.getText().toString();
+            awb = zipSearch.getText().toString();
 
             List<NameValuePair> param = new ArrayList<NameValuePair>();
             param.add(new BasicNameValuePair("awb", awb));
@@ -103,6 +122,7 @@ public class PackageTracking extends AppCompatActivity {
                         weight = c.getInt("weight");
                         fromCity = c.getString("from_city");
                         fromAbbr = c.getString("from_state_abbr");
+                        fromState = c.getString("from_state");
                         toCity = c.getString("to_city");
                         toState = c.getString("to_state");
                         toAbbr = c.getString("to_state_abbr");
@@ -122,9 +142,24 @@ public class PackageTracking extends AppCompatActivity {
         }
 
         protected void onPostExecute(String wew){
-            //tvResult.setText(retAwb+"\n"+fromZip+toZip+sender+recipient+senderTelp+recipientTelp+fromAddress);
-            tvResult.setText(shipmentArray.toString());
-            Toast.makeText(PackageTracking.this, shipmentArray.toString(), Toast.LENGTH_SHORT).show();
+            mesaje.setText("Shipment Found!");
+            trackingAwb.setText(retAwb);
+            trackingAmericaaas.setText("United States");
+            trackingAmericaText.setText("United States");
+            String fromConcat = fromCity + ", " + fromState + ", " + fromAbbr;
+            trackingSenderCityStateZipView.setText(fromConcat);
+            trackingSenderNameView.setText(sender);
+            trackingSenderAddressView.setText(fromAddress);
+            trackingRecipientAddressView.setText(toAddress);
+            trackingRecipientNameView.setText(recipient);
+            String toConcat = toCity + ", " + toState + ", " + toAbbr;
+            trackingRecipientCityStateZipView.setText(toConcat);
+            String atConcat = "Shipment are " + status + " at " + nowCity + ", " + nowState + ", " + nowAbbr;
+            shipmentAt.setText(atConcat);
+            senderDetails.setText("Sender Details");
+            recipientDetails.setText("Recipient Details");
+
+
         }
     }
 }

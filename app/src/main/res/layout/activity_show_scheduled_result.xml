@@ -67,7 +67,7 @@
             android:layout_marginTop="10dp"
             android:layout_marginLeft="5dp"
             android:layout_marginBottom="5dp"
-            android:text="Sender Details"
+            android:text="Recipient Details"
             android:textSize="14dp"
             android:fontFamily="@font/robotomedium"/>
     <TextView

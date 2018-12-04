@@ -23,11 +23,7 @@
         <activity
                 android:name=".home"
                 android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
         </activity>
         <activity
                 android:name=".login"
@@ -40,6 +36,19 @@
         <activity
                 android:name=".showScheduledResult"
                 android:theme="@style/Theme.AppCompat.Light.Custom">
+        </activity>
+        <activity
+                android:name=".PackageTracking"
+                android:theme="@style/Theme.AppCompat.Light.Custom">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <activity
+                android:name=".Scanner"
+                android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen">
         </activity>
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
