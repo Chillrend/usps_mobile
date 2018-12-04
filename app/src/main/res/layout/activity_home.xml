@@ -89,10 +89,12 @@
 
                     <!--button start-->
                     <LinearLayout
+                            android:id="@+id/treking"
                             android:layout_width="0px"
                             android:layout_weight="1"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
+                            android:clickable="true"
                             android:background="@drawable/btnhomeshape">
                         <LinearLayout
                                 android:layout_width="wrap_content"
@@ -132,6 +134,8 @@
                     <!--button end-->
                     <!--button start-->
                     <LinearLayout
+                            android:clickable="true"
+                            android:id="@+id/ziplook"
                             android:layout_width="0px"
                             android:layout_weight="1"
                             android:layout_height="wrap_content"
@@ -186,6 +190,8 @@
                         android:layout_marginRight="15dp">
                     <!--button start-->
                     <LinearLayout
+                            android:clickable="true"
+                            android:id="@+id/scheduled"
                             android:layout_width="0px"
                             android:layout_weight="1"
                             android:layout_height="wrap_content"
@@ -229,6 +235,8 @@
                     <!--button end-->
                     <!--button start-->
                     <LinearLayout
+                            android:clickable="true"
+                            android:id="@+id/uspsweb"
                             android:layout_width="0px"
                             android:layout_weight="1"
                             android:layout_height="wrap_content"

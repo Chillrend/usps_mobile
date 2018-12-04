@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -19,6 +20,7 @@ import android.transition.Slide;
 import android.util.DisplayMetrics;
 import android.view.*;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.daimajia.slider.library.Animations.DescriptionAnimation;
 import com.daimajia.slider.library.Indicators.PagerIndicator;
@@ -39,6 +41,7 @@ public class home extends AppCompatActivity implements NavigationView.OnNavigati
     private DrawerLayout mDrawerLayout;
     private SliderLayout mSlider;
     private Bitmap userpp;
+    LinearLayout treking, ziplook, pickup, uspsweb;
     Context ctx;
 
     @Override
@@ -46,7 +49,6 @@ public class home extends AppCompatActivity implements NavigationView.OnNavigati
         super.onCreate(savedInstanceState);
 
         SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences(getString(R.string.preference_file), Context.MODE_PRIVATE);
-
 
 
         requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -62,7 +64,41 @@ public class home extends AppCompatActivity implements NavigationView.OnNavigati
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setHomeAsUpIndicator(R.drawable.ic_menu);
 
+        treking = findViewById(R.id.treking);
+        ziplook =  findViewById(R.id.ziplook);
+        pickup = findViewById(R.id.scheduled);
+        uspsweb = findViewById(R.id.uspsweb);
 
+        treking.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intentatur = new Intent(home.this,PackageTracking.class);
+                startActivity(intentatur);
+            }
+        });
+        ziplook.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intentatur = new Intent(home.this,searchZip.class);
+                startActivity(intentatur);
+            }
+        });
+        pickup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intentatur = new Intent(home.this,scheduledBook.class);
+                startActivity(intentatur);
+            }
+        });
+        uspsweb.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intentatur = new Intent(Intent.ACTION_VIEW);
+
+                intentatur.setData(Uri.parse("https://www.usps.com/"));
+                startActivity(intentatur);
+            }
+        });
 
         mSlider = (SliderLayout) findViewById(R.id.slider);
 

@@ -37,10 +37,73 @@
     <TextView
             android:layout_width="match_parent"
             android:layout_marginTop="10dp"
+            android:layout_marginBottom="15dp"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="Aplikasi ini dibuat hanya untuk kepentingan akademik"/>
 
+    <View
+            android:layout_width="fill_parent"
+            android:layout_height="2dp"
+            android:background="#c0c0c0"/>
 
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="Developer"
+            android:gravity="center"
+            android:textSize="16sp"
+            android:textColor="@color/colorPrimary"/>
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="Muhamamad Farhan Hanif"
+            android:gravity="center"
+            android:textSize="14sp"/>
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="Mochammad Hendhy Sumaryo"
+            android:gravity="center"
+            android:textSize="14sp"/>
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Library Used"
+            android:gravity="center"
+            android:textSize="16sp"
+            android:textColor="@color/colorPrimary"/>
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="Google zxing"
+            android:gravity="center"
+            android:textSize="14sp"/>
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="hdodenhoff circle imageview"
+            android:gravity="center"
+            android:textSize="14sp"/>
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="daimaijia carousel"
+            android:gravity="center"
+            android:textSize="14sp"/>
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="Google Simple JSON"
+            android:gravity="center"
+            android:textSize="14sp"/>
 
 </LinearLayout>
