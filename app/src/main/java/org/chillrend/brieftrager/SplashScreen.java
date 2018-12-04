@@ -12,9 +12,9 @@ public class SplashScreen extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        setContentView(R.layout.activity_splash_screen);
 
+        setContentView(R.layout.activity_splash_screen);
+        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         ImageView ivSplash = findViewById(R.id.ivSplash);
 
         final Handler handler = new Handler();
@@ -26,6 +26,5 @@ public class SplashScreen extends AppCompatActivity {
                 finish();
             }
         }, 3000L);
-        //nihbro
     }
 }

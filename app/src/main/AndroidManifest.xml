@@ -24,11 +24,7 @@
         <activity
             android:name=".home"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".login" />
         <activity
@@ -51,9 +47,20 @@
 
         <activity
             android:name=".searchZip"
-            android:label="@string/title_activity_search_zip" />
-        <activity android:name=".SplashScreen" />
-        <activity android:name=".PackageTracking" />
+            android:label="@string/title_activity_search_zip" >
+
+        </activity>
+
+        <activity android:name=".SplashScreen">
+
+        </activity>
+        <activity android:name=".PackageTracking" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".Scanner"></activity>
     </application>
 
