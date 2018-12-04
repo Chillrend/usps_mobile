@@ -110,17 +110,17 @@ public class home extends AppCompatActivity implements NavigationView.OnNavigati
         GetBitmapFromURLAsync getBitmapFromURLAsync = new GetBitmapFromURLAsync();
         getBitmapFromURLAsync.execute(uerel);
 
-        if(!sharedPreferences.contains("username")){
-            Intent intent = new Intent(this, login.class);
-            startActivity(intent);
-        }else{
-            drawerUname = sharedPreferences.getString("username","No User");
-            drawerEmail = sharedPreferences.getString("email","No User");
-            homeName = sharedPreferences.getString("name","No User");
-            nameView.setText(homeName);
-            emailView.setText(drawerEmail);
-            unameView.setText(drawerUname);
-        }
+//        if(!sharedPreferences.contains("username")){
+//            Intent intent = new Intent(this, login.class);
+//            startActivity(intent);
+//        }else{
+//            drawerUname = sharedPreferences.getString("username","No User");
+//            drawerEmail = sharedPreferences.getString("email","No User");
+//            homeName = sharedPreferences.getString("name","No User");
+//            nameView.setText(homeName);
+//            emailView.setText(drawerEmail);
+//            unameView.setText(drawerUname);
+//        }
     }
 
     private void loadImageFromStorageToView(String path, String filename)
