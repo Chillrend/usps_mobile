@@ -23,7 +23,11 @@
         <activity
                 android:name=".home"
                 android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
 
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
         </activity>
         <activity
                 android:name=".login"
@@ -40,11 +44,7 @@
         <activity
                 android:name=".PackageTracking"
                 android:theme="@style/Theme.AppCompat.Light.Custom">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
         </activity>
         <activity
                 android:name=".Scanner"
